@@ -1,76 +1,96 @@
-CREATE TABLE profile( 
-  Userid int,
-  Firstname varchar,
-  Lastname varchar,
+CREATE TABLE ID
+(
+  ID INTEGER PRIMARY KEY AUTOINCREMENT ID,
+  Firstname VARCHAR,
+  Lastname VARCHAR,
   Picture Object,
-  Religion varchar,
+  Religion VARCHAR,
   Birthday date,
-  Messenger varchar
 );
 
-create table FriendRelation(
-  AreFriends varchar,
+create table FriendRelation
+(
+  AreFriends VARCHAR,
   UserId1 int,
   UserId2 int
 );
 
-create table Relationship(
-  Engaged varchar,
-  InaRelationship varchar,
-  IsSingle varchar,
-  ItsComplcated varchar,
-  Married varchar
+create table Relationship
+(
+  Engaged VARCHAR,
+  InaRelationship VARCHAR,
+  IsSingle VARCHAR,
+  ItsComplcated VARCHAR,
+  Married VARCHAR
 );
 
 Create Table Photo (
-  AlbumID varchar, 
-  Caption varchar,
-  created TIMESTAMP not null,
+  ID INTEGER PRIMARY KEY AUTOINCREMENT ID,
+  AlbumID VARCHAR 
+    FOREIGN KEY(Photo) REFERENCES ID, 
+  Caption VARCHAR,
+  created TIMESTAMP NOT NULL,
   link hyperlink,
-  phowner int,
-  PhotoID int,
-  phLocation varchar
+  PhotoOwner int
+    FOREIGN KEY(ID) REFERENCES ID,
+  PhotoLocation VARCHAR
+    FOREIGN KEY(Locale) REFERENCES ID
 );
 
 Create Table PhotoAlbum (
-  AlbumID int ,
-  Created timestamp not null,
-  Descrip varchar,
-  Locale uniqueidentifier,
-  Modified timestamp
+  ID INTEGER PRIMARY KEY AUTOINCREMENT ID,
+  Created TIMESTAMP,
+  Descrip VARCHAR,
+  PhotoLocation VARCHAR
+    FOREIGN KEY(Locale) REFERENCES ID,
+  Modified TIMESTAMP
 );
 Create Table PhotoTag (
-  PhotoID int,
-  Loc int,
-  Userid int 
+  ID INTEGER PRIMARY KEY AUTOINCREMENT ID,
+  Userid int
+    FOREIGN KEY(ID) REFERENCES ID
 );
 Create Table Locale (
-  LocationID varchar,
-  City varchar, 
-  countries varchar,
-  Province varchar,
-  Street varchar,
-  Zipcode varchar
+  ID INTEGER PRIMARY KEY AUTOINCREMENT ID,
+  House# VARCHAR,
+  Street VARCHAR,
+  City VARCHAR,
+  Zipcode VARCHAR,
+  Province VARCHAR,
+  countries VARCHAR
 );
 Create table Messenger (
-  MessengerID varchar
+  MessengerID INTEGER
+    FOREIGN KEY(ID) REFERENCES ID
 );
 
 create Table Gender (
-  Unsecified varchar,
-  Male varchar,
-  Female varchar
+  Unsecified VARCHAR,
+  Male VARCHAR,
+  Female VARCHAR
 );
 create Table WorkPlace (
-  Workplace varchar, 
-  DescribeWork varchar,
+  Workplace VARCHAR, 
+  DescribeWork VARCHAR,
   StartDate DATETIME,
   EndDate DATETIME,
-  Position varchar
+  Position VARCHAR
 );
 create Table Affiliation (
-  IDName varchar,
-  NID int,
-  AffiliationStatus varchar,
-  Year Year
+  ID INTEGER PRIMARY KEY AUTOINCREMENT ID,
+  AffiliationStatus VARCHAR,
+  Expirydate DATETIME
+);
+CREATE TABLE Filters (
+  Clarendon VARCHAR,
+  Gingham VARCHAR,
+  Juno VARCHAR,
+  Lark VARCHAR,
+  Mayfair VARCHAR,
+  Siera VARCHAR,
+  Valencia VARCHAR,
+  Walden VARCHAR
+);
+CREATE TABLE FilterProcessor (
+  sparkAR INTEGER
 );
